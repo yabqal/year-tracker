@@ -8,6 +8,13 @@ import {
   firstWeekdayOfEthiopianMonth,
   getEthiopicToday,
 } from "@/lib/ethiopianCalendar";
+import { FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export default function EthiopianCalendar() {
   const today = useMemo(() => getEthiopicToday(), []);
@@ -49,51 +56,61 @@ export default function EthiopianCalendar() {
   }
 
   const cells: Array<{ key: string; label?: number; muted?: boolean }> = [];
+
   for (let i = 0; i < startWeekday; i++) {
-    cells.push({ key: `pad-${i}`, muted: true });
+    cells.push({ key: `pad-start-${i}`, muted: true });
   }
+
   for (let d = 1; d <= daysInMonth; d++) {
     cells.push({ key: `d-${d}`, label: d });
   }
 
+  // Trailing blanks (to complete the last row)
+  const totalCells = startWeekday + daysInMonth;
+  const trailing = (7 - (totalCells % 7)) % 7;
+  for (let i = 0; i < trailing; i++) {
+    cells.push({ key: `pad-end-${i}`, muted: true });
+  }
+
   return (
     <div className="mx-auto w-full max-w-lg p-4 text-black/80">
-      <div className="flex items-center justify-between gap-2 mb-4">
+      <div className="flex items-center justify-between gap-2 mb-6">
         <div className="flex gap-2">
-          
           <button
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 shadow-md duration-300"
             onClick={prevMonth}
             aria-label="Previous Month"
           >
-            ‹
+            <FaChevronLeft className="self-center" />
           </button>
         </div>
-        <div className="text-center">
+        <div className="text-center flex flex-col">
           <div className="text-lg font-semibold">
-            <div className="text-2xl flex gap-4 align-baseline">
+            <div className="text-[48px] flex gap-4 align-baseline items-center">
               {ethiopianMonths[month - 1]}
-              <div className="relative text-xl self-baseline">
+              <div className="flex flex-col gap-1 text-[14px] font-[inter] self-baseline place-items-center">
                 <button
-                  className="absolute -top-7 left-2 w-6 h-6 rounded-4xl bg-gray-200 hover:bg-gray-300"
+                  className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-200 text-gray-400 hover:text-gray-500 duration-300"
                   onClick={prevYear}
                   aria-label="Previous Year"
                 >
-                  «
+                  <FaChevronUp size={14} />
                 </button>
+                {year}
                 <button
-                  className="absolute -bottom-7 left-2 w-6 h-6 rounded-4xl bg-gray-200 hover:bg-gray-300"
+                  className="w-6 h-6 flex items-center justify-center rounded-full hover:bg-gray-200 text-gray-400 hover:text-gray-500 duration-300"
                   onClick={nextYear}
                   aria-label="Next Year"
                 >
-                  »
+                  <FaChevronDown size={14} className="self-center"/>
                 </button>
-                {year}
               </div>
-            </div> 
+            </div>
           </div>
           <button
-            className="text-xs text-blue-600 hover:underline mt-1"
+            className={`text-sm ${
+              (year === today.year && month === today.month) ? "text-gray-600/70 hover: bg-none cursor-default" : "text-red-600/70 hover:underline cursor-pointer duration-250"
+            }  font-bold self-start p-2`}
             onClick={goToday}
           >
             ዛሬ
@@ -101,15 +118,14 @@ export default function EthiopianCalendar() {
         </div>
         <div className="flex gap-2">
           <button
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 shadow-md duration-300"
             onClick={nextMonth}
             aria-label="Next Month"
           >
-            ›
+            <FaChevronRight className="self-center" />
           </button>
         </div>
       </div>
-
       <div className="grid grid-cols-7 gap-2 mb-8 text-center">
         {weekdayHeads.map((w) => (
           <div key={w} className="w-10 font-semibold opacity-70">
@@ -118,7 +134,7 @@ export default function EthiopianCalendar() {
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-2 gap-y-4">
+      <div className="grid grid-cols-7 gap-2 gap-y-4 font-[inter]">
         {cells.map((c) => {
           if (c.muted) {
             return (
