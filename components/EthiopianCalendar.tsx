@@ -10,6 +10,9 @@ import {
 } from "@/lib/ethiopianCalendar";
 import { FaChevronLeft, FaChevronRight, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Inter } from 'next/font/google';
+import { Noto_Sans_Ethiopic } from "next/font/google";
+
+const noto_sans_ethiopic = Noto_Sans_Ethiopic()
 
 const inter = Inter({
   subsets: ["latin"],
@@ -86,7 +89,7 @@ export default function EthiopianCalendar() {
         </div>
         <div className="text-center flex flex-col">
           <div className="text-lg font-semibold">
-            <div className="text-[48px] flex gap-4 align-baseline items-center">
+            <div className="text-[48px] flex gap-4 align-baseline items-center font-[noto_sans_ethiopic]">
               {ethiopianMonths[month - 1]}
               <div className="flex flex-col gap-1 text-[14px] font-[inter] self-baseline place-items-center">
                 <button
@@ -108,7 +111,7 @@ export default function EthiopianCalendar() {
             </div>
           </div>
           <button
-            className={`text-sm ${
+            className={`text-md font-[noto_sans_ethiopic] ${
               (year === today.year && month === today.month) ? "text-gray-600/70 hover: bg-none cursor-default" : "text-red-600/70 hover:underline cursor-pointer duration-250"
             }  font-bold self-start p-2`}
             onClick={goToday}
@@ -126,7 +129,7 @@ export default function EthiopianCalendar() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-7 gap-2 mb-8 text-center">
+      <div className="grid grid-cols-7 gap-2 mb-8 text-center font-[noto_sans_ethiopic]">
         {weekdayHeads.map((w) => (
           <div key={w} className="w-10 font-semibold opacity-70">
             {w}

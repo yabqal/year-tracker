@@ -115,3 +115,11 @@ export function getEthiopicToday(): EthiopicDate {
   const gd = now.getUTCDate();
   return gregorianToEthiopic(gy, gm, gd);
 }
+
+export function getDaysInEthiopianYear(year: number): number {
+  return isEthiopianLeapYear(year) ? 366 : 365;
+}
+
+export function getDayOfYear(year: number, month: number, day: number): number {
+  return (month - 1) * 30 + day;
+}
