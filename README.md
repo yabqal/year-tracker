@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ethiopian Calendar & Year Progress Tracker
 
+A **Next.js** app that displays the **Ethiopian calendar** along with a visual **year progress tracker**. 
+
+Built with **Tailwind CSS** for styling.
+
+This year tracker was inspired by [YearProgressET](https://t.me/yearprogresset) on telegram. Go check it out.
+
+---
+## Features
+
+- **Custom Ethiopian Calendar**
+	- Supports navigation between months and years
+	- Highlights today’s date
+	- Shows days from previous/next months in a muted style
+
+- **Year Progress Tracker**
+	- Displays how much of the Ethiopian year has passed
+	- Smooth animated bar with alternating colors
+	- Shows percentage and day counts (e.g. `125 / 365`)
+	
+- **UI & Styling**
+	- Tailwind-based clean design
+
+---
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) – React framework
+- [Tailwind CSS](https://tailwindcss.com/) – utility-first styling
+- [React Icons](https://react-icons.github.io/react-icons/) – for icons
+
+---
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+git clone https://github.com/your-username/ethiopian-calendar.git
+
+cd ethiopian-calendar
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install Dependencies**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm install
+```
 
-## Learn More
+3. **Run Dev Server**
 
-To learn more about Next.js, take a look at the following resources:
+```bash
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Open http://localhost:3000 or the link in your terminal through your browser
