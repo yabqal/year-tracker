@@ -36,7 +36,7 @@ This year tracker was inspired by [YearProgressET](https://t.me/yearprogresset) 
 
 ```bash
 
-git clone https://github.com/your-username/ethiopian-calendar.git
+git clone https://github.com/yabqal/year-tracker.git
 
 cd ethiopian-calendar
 ```
